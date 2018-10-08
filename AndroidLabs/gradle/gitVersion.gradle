@@ -1,0 +1,50 @@
+ext {
+    def getTotalCommitsNumber = { _ ->
+        try {
+            def code = new ByteArrayOutputStream()
+            exec {
+                commandLine 'git', 'rev-list', '--count', 'develop'
+                standardOutput = code
+            }
+            return code.toString().replace("\n", "")
+        }
+        catch (ignored) {
+            return 0
+        }
+    }
+
+    def getNumberOfCommitsSinceLastTag = { tag ->
+        try {
+            def code = new ByteArrayOutputStream()
+            exec {
+                commandLine 'git', 'rev-list', tag + '..head', '--count'
+                standardOutput = code
+            }
+            return code.toString().replace("\n", "")
+        }
+        catch (ignored) {
+           return getTotalCommitsNumber()
+        }
+    }
+
+    def getLastTagName = { _ ->
+        try {
+            def code = new ByteArrayOutputStream()
+            exec {
+                commandLine 'git', 'describe', '--abbrev=0'
+                standardOutput = code
+            }
+            return code.toString().replace("\n", "")
+        }
+        catch (ignored) {
+            return "Error. No tags."
+        }
+    }
+
+    lastTagName = getLastTagName()
+    numberOfComittsSinceLastTag = getNumberOfCommitsSinceLastTag(lastTagName).toString()
+    gitVersionName = lastTagName + '.' + numberOfComittsSinceLastTag
+
+    gitVersionCode = getTotalCommitsNumber()
+}
+
