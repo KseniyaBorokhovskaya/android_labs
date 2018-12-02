@@ -27,11 +27,10 @@ class MainActivity : AppCompatActivity() {
         view.text = version
     }
 
-    private fun getImei() : String {
-        val telephonyManager = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        var imei = telephonyManager.deviceId
-        if (imei == null) imei = "No information"
-        return imei
+    private fun getIMEI() : String {
+        val telManager = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        var IMEI = telManager.deviceId
+        return IMEI?.let{ IMEI } ?: "Don't have iformation"
     }
 
     private fun addPhoneImeiToLayout(){
@@ -45,40 +44,38 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        var imei = getImei()
+        var IMEI = getIMEI()
         val phoneImeiTextView = findViewById<TextView>(R.id.IMEI)
-        phoneImeiTextView.text = imei
+        phoneImeiTextView.text = IMEI
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
-        when (requestCode) {
-            _requestPermissionPhoneState -> {
-                var imei = "No information"
-                if ((grantResults.isNotEmpty() &&
-                                grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    imei = getImei()
-                }
-                else if ((grantResults.isNotEmpty() &&
-                                grantResults[0] == PackageManager.PERMISSION_DENIED)) {
-                    showPermissionExplanation(Manifest.permission.READ_PHONE_STATE,
-                            getString(R.string.read_phone_state_permission_explanation),
+        if (requestCode == _requestPermissionPhoneState) {
+            var imei = "Don't have iformation"
+            if ((grantResults.isNotEmpty() &&
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                imei = getIMEI()
+            }
+            else if ((grantResults.isNotEmpty() &&
+                            grantResults[0] == PackageManager.PERMISSION_DENIED)) {
+                    showExplanationOfPermission(Manifest.permission.READ_PHONE_STATE,
+                            getString(R.string.permission_explanation),
                             _requestPermissionPhoneState)
-                }
+            }
                 val phoneImeiTextView = findViewById<TextView>(R.id.IMEI)
                 phoneImeiTextView.text = imei
                 return
-            }
         }
     }
 
-    private fun showPermissionExplanation (permission : String, explanation : String,
-                                           permissionRequestCode: Int) {
+    private fun showExplanationOfPermission (permission : String, explanation : String,
+                                             permissionRequestCode: Int) {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
             val builder = AlertDialog.Builder(this)
-            var dialogQuestion = getString(R.string.permission_explanation_dialog_question)
+            var dialogQuestion = getString(R.string.permission_dialog_question)
             builder.setMessage("$explanation $dialogQuestion")
-                    .setTitle(R.string.permission_explanation_dialog_title)
+                    .setTitle(R.string.permission_dialog_title)
 
             builder.setPositiveButton("Yes"){ _, _ ->
             }
