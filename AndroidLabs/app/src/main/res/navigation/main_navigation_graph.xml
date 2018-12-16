@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation_graph"
+    app:startDestination="@id/destination_profile">
+
+    <fragment
+        android:id="@+id/destination_profile"
+        android:name="com.example.androidlabs.Fragments.ProfileFragment"
+        android:label="Profile">
+        <deepLink app:uri="sdapp://androidLabs/page/1"/>
+    </fragment>
+    <fragment
+        android:id="@+id/destination_about"
+        android:name="com.example.androidlabs.Fragments.AboutFragment"
+        android:label="About" >
+        <deepLink app:uri="sdapp://androidLabs/page/2"/>
+    </fragment>
+    <fragment
+        android:id="@+id/destination_blank"
+        android:name="com.example.androidlabs.Fragments.BlankFragment"
+        android:label="Blank" >
+        <deepLink app:uri="sdapp://androidLabs/page/3"/>
+    </fragment>
+</navigation>

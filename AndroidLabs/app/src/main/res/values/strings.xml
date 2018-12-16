@@ -1,9 +1,44 @@
 <resources>
-    <string name="app_name">Android Labs</string>
+    <string name="app_name">AndroidLabs</string>
     <string name="version_name">Version name:</string>
     <string name="imei">IMEI:</string>
-    <string name="permission_explanation">You need to accept permission to see your phone IMEI.</string>
-    <string name="permission_dialog_title">Explanation of permission</string>
-    <string name="permission_dialog_question">Are you sure you don\'t want to
+    <string name="read_phone_state_permission_explanation">The permission is needed to get your
+        phone imei.</string>
+    <string name="permission_explanation_dialog_question">Are you sure you don\'t want to
         give the permission?</string>
+    <string name="permission_explanation_dialog_title">The permission explanation</string>
+
+    <string name="no_information">No information</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+
+    <string name="friends">Friends</string>
+    <string name="chats">Chats</string>
+    <string name="profile">Profile</string>
+
+    <string name="about">About</string>
+
+    <string name="surname_title">Surname:</string>
+    <string name="name_title">Name:</string>
+    <string name="phone_title">Phone:</string>
+    <string name="email_title">Email:</string>
+
+
+    <string name="login">Login: </string>
+    <string name="password">Password: </string>
+    <string name="confirm_password">Confirm password</string>
+
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="no_account">No account yet? Create one</string>
+
+    <string name="sign_out">Sign out</string>
+    <string name="wrong_sign_in">Wrong login or password</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="existing_user">The user with such login already exists</string>
+
+    <string name="choose_photo">Choose photo</string>
+    <string name="take_photo">Take photo</string>
+
 </resources>

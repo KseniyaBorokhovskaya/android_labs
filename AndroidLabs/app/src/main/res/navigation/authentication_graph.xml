@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/authentication_graph"
+    app:startDestination="@id/destination_sign_in"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <fragment
+        android:id="@+id/destination_sign_in"
+        android:name="com.example.androidlabs.Fragments.SignInFragment"
+        android:label="Sign In">
+        <action
+            android:id="@+id/action_destination_sign_in_to_destination_sign_up"
+            app:destination="@id/destination_sign_up" />
+    </fragment>
+    <fragment
+        android:id="@+id/destination_sign_up"
+        android:name="com.example.androidlabs.Fragments.SignUpFragment"
+        android:label="Sign Up" />
+    <fragment
+        android:id="@+id/destination_about"
+        android:name="com.example.androidlabs.Fragments.AboutFragment"
+        android:label="About" />
+</navigation>
